@@ -1,0 +1,17 @@
+# Node
+node_modules/
+*.log
+
+# Build
+dist/
+
+# TS build info
+*.tsbuildinfo
+
+# Env / secrets
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
