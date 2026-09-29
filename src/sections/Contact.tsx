@@ -7,7 +7,7 @@ import { company } from '../data/company'
 import { submitForm } from '../lib/forms'
 
 export function Contact() {
-  const { t, lang } = useI18n()
+  const { t } = useI18n()
   const [form, setForm] = useState({ name: '', email: '', message: '', consent: false })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
@@ -131,9 +131,9 @@ export function Contact() {
                     <p className="text-[11px] tracking-[0.22em] uppercase text-stone-400 mb-1">
                       {t('contact.hours.label')}
                     </p>
-                    <p className="text-ink-900">{company.hours.weekdays[lang]}</p>
-                    <p className="text-ink-900">{company.hours.saturday[lang]}</p>
-                    <p className="text-stone-500">{company.hours.sunday[lang]}</p>
+                    <p className="text-ink-900">{t('contact.hours.weekdays')}</p>
+                    <p className="text-ink-900">{t('contact.hours.saturday')}</p>
+                    <p className="text-stone-500">{t('contact.hours.sunday')}</p>
                   </div>
                 </div>
               </div>

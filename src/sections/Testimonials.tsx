@@ -36,7 +36,8 @@ export function Testimonials() {
                 </div>
                 <blockquote className="font-display text-xl md:text-2xl text-ink-900 leading-snug mb-8 flex-1">
                   <span className="font-editorial italic text-3xl text-accent-500 mr-1">“</span>
-                  {tm.quote[lang]}
+                  {/* L'ourdou n'a pas de version dédiée pour l'instant → repli FR */}
+                  {tm.quote[lang] ?? tm.quote.fr}
                   <span className="font-editorial italic text-3xl text-accent-500 ml-1">”</span>
                 </blockquote>
                 <figcaption className="pt-6 border-t border-ink-900/10 flex items-center justify-between text-sm">

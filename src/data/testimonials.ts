@@ -4,7 +4,7 @@ export interface Testimonial {
   id: string
   name: string
   project: string
-  quote: { fr: string; en: string }
+  quote: { fr: string; en: string; ur?: string }
   rating: number
 }
 

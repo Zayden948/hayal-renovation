@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { useI18n } from '../i18n/I18nProvider'
+import type { Lang } from '../i18n/translations'
 import { legalDocs, type LegalDoc } from '../data/legal'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 export function LegalPage({ type }: { type: 'legal' | 'privacy' }) {
   const { t, lang } = useI18n()
-  const doc: LegalDoc = legalDocs[type][lang]
+  // Les documents légaux n'existent pas encore en ourdou → repli sur la version française
+  const doc: LegalDoc =
+    (legalDocs[type] as Partial<Record<Lang, LegalDoc>>)[lang] ?? legalDocs[type].fr
 
   usePageMeta(`${doc.title} | Hayal Rénovation Décoration`, doc.intro)
 

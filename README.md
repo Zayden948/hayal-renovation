@@ -1,7 +1,9 @@
 # HAYAL RÉNOVATION DÉCORATION — Site web
 
-Site vitrine bilingue (FR/EN) pour Hayal Rénovation Décoration.
+Site vitrine trilingue (FR/EN/UR) pour Hayal Rénovation Décoration.
 Vite + React 18 + TypeScript + Tailwind CSS, react-router-dom, <model-viewer> pour la 3D.
+L'ourdou est rendu de droite à gauche (dir="rtl" appliqué automatiquement,
+police Noto Naskh Arabic).
 
 ## Lancer le site
 
@@ -61,7 +63,7 @@ src/
                 LegalPage (mentions légales / confidentialité), NotFound
   data/         company, projects, legal, translations (FR/EN)
   lib/          forms.ts (envoi de formulaire), modelViewerLoader.ts
-  i18n/         contexte de langue (français par défaut)
+  i18n/         contexte de langue (fr par défaut ; en + ur/ourdou, RTL auto)
 ```
 
 ## Notes techniques
