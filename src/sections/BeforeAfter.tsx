@@ -10,9 +10,9 @@ function BeforeAfterSlider({
 }: {
   before: string
   after: string
-  label: string
+  label: { fr: string; en: string }
 }) {
-  const { t } = useI18n()
+  const { lang } = useI18n()
   const [pos, setPos] = useState(50)
   const [dragging, setDragging] = useState(false)
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -55,7 +55,7 @@ function BeforeAfterSlider({
         {/* After (full) */}
         <img
           src={after}
-          alt={label + ' — after'}
+          alt={label[lang] + ' — after'}
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
@@ -66,7 +66,7 @@ function BeforeAfterSlider({
         >
           <img
             src={before}
-            alt={label + ' — before'}
+            alt={label[lang] + ' — before'}
             className="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
           />
@@ -75,11 +75,11 @@ function BeforeAfterSlider({
         {/* Labels */}
         <span className="absolute top-4 left-4 chip bg-bone-50/90 backdrop-blur">
           <span className="h-1.5 w-1.5 rounded-full bg-ink-900" />
-          {t('beforeAfter.before')}
+          {lang === 'fr' ? 'Avant' : 'Before'}
         </span>
         <span className="absolute top-4 right-4 chip bg-bone-50/90 backdrop-blur">
           <span className="h-1.5 w-1.5 rounded-full bg-accent-500" />
-          {t('beforeAfter.after')}
+          {lang === 'fr' ? 'Après' : 'After'}
         </span>
 
         {/* Divider line */}
@@ -134,7 +134,7 @@ export function BeforeAfter() {
                   <BeforeAfterSlider
                     before={ba.before}
                     after={ba.after}
-                    label={ba.type}
+                    label={{ fr: ba.type, en: ba.type }}
                   />
                 </div>
                 <div className={`lg:col-span-4 ${i % 2 === 1 ? 'lg:order-1 lg:pr-8' : 'lg:pl-8'}`}>

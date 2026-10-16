@@ -14,15 +14,13 @@ const I18nContext = createContext<{
 function applyLangToDocument(lang: Lang) {
   const root = document.documentElement
   root.lang = lang
-  // L'ourdou s'écrit de droite à gauche
-  root.dir = lang === 'ur' ? 'rtl' : 'ltr'
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(() => {
     if (typeof window === 'undefined') return 'fr'
     const saved = window.localStorage.getItem('hayal.lang') as Lang | null
-    if (saved === 'fr' || saved === 'en' || saved === 'ur') return saved
+    if (saved === 'fr' || saved === 'en') return saved
     const browser = window.navigator.language.toLowerCase()
     return browser.startsWith('fr') ? 'fr' : 'fr' // default to French
   })

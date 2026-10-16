@@ -1,22 +1,25 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import { useI18n, type TranslationKey } from '../i18n/I18nProvider'
+import { useI18n } from '../i18n/I18nProvider'
 import { Reveal } from '../components/Reveal'
 import { projects, type ProjectCategory } from '../data/projects'
 
-const categories: ('all' | ProjectCategory)[] = [
-  'all',
-  'renovation',
-  'kitchen',
-  'bathroom',
-  'decoration',
-  'layout',
-  'design3d',
+const categories: { key: 'all' | ProjectCategory; fr: string; en: string }[] = [
+  { key: 'all', fr: 'Tous', en: 'All' },
+  { key: 'renovation', fr: 'Rénovation', en: 'Renovation' },
+  { key: 'kitchen', fr: 'Cuisine', en: 'Kitchen' },
+  { key: 'bathroom', fr: 'Salle de bain', en: 'Bathroom' },
+  { key: 'decoration', fr: 'Décoration', en: 'Decoration' },
+  { key: 'layout', fr: 'Aménagement', en: 'Layout' },
+  { key: 'design3d', fr: 'Design 3D', en: '3D Design' },
 ]
 
+const categoryLabel = (c: ProjectCategory, lang: 'fr' | 'en') =>
+  categories.find((x) => x.key === c)?.[lang] ?? c
+
 export function Projects() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const [filter, setFilter] = useState<'all' | ProjectCategory>('all')
 
   const filtered = useMemo(
@@ -50,12 +53,12 @@ export function Projects() {
         <Reveal>
           <div className="flex flex-wrap items-center gap-2 mb-10 md:mb-14">
             {categories.map((c) => {
-              const isActive = filter === c
+              const isActive = filter === c.key
               return (
                 <button
-                  key={c}
+                  key={c.key}
                   type="button"
-                  onClick={() => setFilter(c)}
+                  onClick={() => setFilter(c.key)}
                   aria-pressed={isActive}
                   className={`px-4 py-2 text-xs tracking-[0.16em] uppercase rounded-full border transition-all duration-300 ${
                     isActive
@@ -63,7 +66,7 @@ export function Projects() {
                       : 'border-ink-900/15 text-ink-900/70 hover:border-ink-900 hover:text-ink-900'
                   }`}
                 >
-                  {t(`projects.filter.${c}` as TranslationKey)}
+                  {c[lang]}
                 </button>
               )
             })}
@@ -98,7 +101,7 @@ export function Projects() {
                   <div className="pt-5 flex items-start justify-between gap-4">
                     <div>
                       <p className="text-[11px] tracking-[0.22em] uppercase text-stone-400 mb-2">
-                        {t(`projects.filter.${project.category}` as TranslationKey)} · {project.location}
+                        {categoryLabel(project.category, lang)} · {project.location}
                       </p>
                       <h3 className="font-display text-xl md:text-[22px] text-ink-900 leading-snug">
                         {project.name}

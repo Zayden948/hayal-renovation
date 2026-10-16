@@ -177,24 +177,6 @@
 ::-webkit-scrollbar-thumb { background: #C4B69A; border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: #A8896A; }
 
-/* Urdu (right-to-left) — Arabic-script font for body text and headings.
-   Nastaliq-style headings are hard to read at display sizes, we use Naskh
-   everywhere and slightly loosen the display sizes' letter-spacing. */
-html[lang="ur"] body,
-html[lang="ur"] h1, html[lang="ur"] h2, html[lang="ur"] h3,
-html[lang="ur"] h4, html[lang="ur"] h5, html[lang="ur"] h6 {
-  font-family: "Noto Naskh Arabic", "Segoe UI", system-ui, sans-serif;
-}
-html[lang="ur"] h1, html[lang="ur"] h2, html[lang="ur"] h3,
-html[lang="ur"] h4, html[lang="ur"] h5, html[lang="ur"] h6 {
-  letter-spacing: normal;
-  line-height: 1.35;
-}
-/* Latin-heavy components (brand logo, language switcher) stay LTR */
-html[lang="ur"] .force-ltr {
-  direction: ltr;
-}
-
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
